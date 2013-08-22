@@ -1,0 +1,6 @@
+\\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Debug\WebBuilder.exe
+\\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Debug\WebBuilder.pdb
+\\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Debug\Yahoo.Yui.Compressor.dll
+\\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\obj\x86\Debug\WebBuilder.exe
+\\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\obj\x86\Debug\WebBuilder.pdb
+\\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Debug\EcmaScript.NET.dll
