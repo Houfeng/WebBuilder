@@ -1,3 +1,4 @@
+using System;
 using System.Web.Script.Serialization;
 
 namespace WebBuilder.Utils
@@ -25,6 +26,8 @@ namespace WebBuilder.Utils
         public bool ignoreEval { get; set; }
 
         public bool removeComments { get; set; }
+
+        public bool addMark { get; set; }
 
         private static JavaScriptSerializer serializer = new JavaScriptSerializer();
 

@@ -5,6 +5,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
-    <StartArguments>{indir:%27C:\\WebBuilder%27,outdir:%27C:\\WebBuilder_Build%27}</StartArguments>
+    <StartArguments>{indir:%27C:\\WebBuilder%27,outdir:%27C:\\WebBuilder_Build%27,addMark:true,removeComments:true}</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <StartArguments>{inDir:%27C:\\WebBuilder%27,outDir:%27C:\\WebBuilder_Build%27,addMark:true}</StartArguments>
   </PropertyGroup>
 </Project>
