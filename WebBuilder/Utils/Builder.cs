@@ -12,7 +12,7 @@ namespace WebBuilder.Utils
         public Builder(Parameter parameter)
         {
             this.Parameter = parameter;
-            this.Separator = this.Parameter.platform == "window" ? "\\" : "/";
+            this.Separator = this.Parameter.platform == "windows" ? "\\" : "/";
             this.Compressors = new Dictionary<string, CompressorBase>();
             this.Compressors.Add(".*", new GeneralCompressor(this.Parameter));
             this.Compressors.Add(".js", new JsCompressor(this.Parameter));
