@@ -9,6 +9,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>WebBuilder</RootNamespace>
     <AssemblyName>WebBuilder</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,10 +60,16 @@
     <Compile Include="Utils\Builder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Tool\merge.bat" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\EcmaScript.NET.dll" />
     <Content Include="Lib\Yahoo.Yui.Compressor.dll" />
     <Compile Include="Utils\CssCompressor.cs" />
   </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>::"C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /ndebug /target:winexe /out:"$(TargetDir)WebBuilder_Build.exe" "$(TargetDir)WebBuilder.exe" /log "$(TargetDir)EcmaScript.NET.dll" /log "$(TargetDir)Yahoo.Yui.Compressor.dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

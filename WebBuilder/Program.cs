@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Text;
 using WebBuilder.Utils;
 
 
@@ -9,6 +10,8 @@ namespace WebBuilder
     {
         public static void Main(string[] args)
         {
+            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;
             var title = "WebBuilder";
             var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             Console.Title = title;
@@ -34,6 +37,7 @@ namespace WebBuilder
         }
         private static void Excute(string args)
         {
+            args = args.Replace("\\", "\\\\");
             try
             {
                 Parameter parameter = Parameter.Create(args);

@@ -1,3 +1,4 @@
+\\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Release\WebBuilder.exe.config
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Release\WebBuilder.exe
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Release\WebBuilder.pdb
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Release\EcmaScript.NET.dll
