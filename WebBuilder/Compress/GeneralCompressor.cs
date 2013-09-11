@@ -1,10 +1,10 @@
-﻿
-namespace WebBuilder.Utils
+﻿using WebBuilder.Utils;
+namespace WebBuilder.Compress
 {
     public class GeneralCompressor : CompressorBase
     {
-        public GeneralCompressor(Parameter parameter)
-            : base(parameter)
+        public GeneralCompressor(CmdParameter cmdParameter)
+            : base(cmdParameter)
         {
         }
         public override byte[] Compress(byte[] source)

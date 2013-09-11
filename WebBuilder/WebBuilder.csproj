@@ -51,24 +51,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utils\GeneralCompressor.cs" />
+    <Compile Include="Compress\GeneralCompressor.cs" />
+    <Compile Include="Doc\DocBuilder.cs" />
+    <Compile Include="Doc\Entity.cs" />
+    <Compile Include="Doc\Member.cs" />
+    <Compile Include="Doc\Paramter.cs" />
+    <Compile Include="Doc\Return.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\CompressorBase.cs" />
-    <Compile Include="Utils\JsCompressor.cs" />
-    <Compile Include="Utils\Parameter.cs" />
-    <Compile Include="Utils\Builder.cs" />
+    <Compile Include="Compress\CompressorBase.cs" />
+    <Compile Include="Compress\JsCompressor.cs" />
+    <Compile Include="Utils\CmdParameter.cs" />
+    <Compile Include="Compress\CompressBuilder.cs" />
+    <Compile Include="Utils\DirIterater.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Tool\merge.bat" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\EcmaScript.NET.dll" />
+    <Content Include="Lib\JinianNet.JNTemplate.dll" />
     <Content Include="Lib\Yahoo.Yui.Compressor.dll" />
-    <Compile Include="Utils\CssCompressor.cs" />
+    <Compile Include="Compress\CssCompressor.cs" />
+    <Content Include="template\member.html" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <PostBuildEvent>::"C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /ndebug /target:winexe /out:"$(TargetDir)WebBuilder_Build.exe" "$(TargetDir)WebBuilder.exe" /log "$(TargetDir)EcmaScript.NET.dll" /log "$(TargetDir)Yahoo.Yui.Compressor.dll"</PostBuildEvent>
   </PropertyGroup>

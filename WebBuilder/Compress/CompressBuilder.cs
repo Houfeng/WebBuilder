@@ -1,22 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using WebBuilder.Utils;
 
-namespace WebBuilder.Utils
+namespace WebBuilder.Compress
 {
-    public class Builder
+    public class CompressBuilder
     {
         private Dictionary<string, CompressorBase> Compressors { get; set; }
         private string Separator { get; set; }
-        private Parameter Parameter { get; set; }
-        public Builder(Parameter parameter)
+        private CmdParameter cmdParameter { get; set; }
+        public CompressBuilder(CmdParameter cmdParameter)
         {
-            this.Parameter = parameter;
-            this.Separator = this.Parameter.platform == "windows" ? "\\" : "/";
+            this.cmdParameter = cmdParameter;
+            this.Separator = this.cmdParameter.platform == "windows" ? "\\" : "/";
             this.Compressors = new Dictionary<string, CompressorBase>();
-            this.Compressors.Add(".*", new GeneralCompressor(this.Parameter));
-            this.Compressors.Add(".js", new JsCompressor(this.Parameter));
-            this.Compressors.Add(".css", new CssCompressor(this.Parameter));
+            this.Compressors.Add(".*", new GeneralCompressor(this.cmdParameter));
+            this.Compressors.Add(".js", new JsCompressor(this.cmdParameter));
+            this.Compressors.Add(".css", new CssCompressor(this.cmdParameter));
         }
         private void Handle(DirectoryInfo inDir, DirectoryInfo outDir)
         {
@@ -68,11 +69,11 @@ namespace WebBuilder.Utils
         }
         public void Excute()
         {
-            Console.WriteLine("start.");
-            DirectoryInfo inDir = Directory.CreateDirectory(this.Parameter.inDir);
-            DirectoryInfo outDir = Directory.CreateDirectory(this.Parameter.outDir);
+            Console.WriteLine("Compress Start.");
+            DirectoryInfo inDir = Directory.CreateDirectory(this.cmdParameter.inDir);
+            DirectoryInfo outDir = Directory.CreateDirectory(this.cmdParameter.outDir);
             this.Handle(inDir, outDir);
-            Console.WriteLine("done.");
+            Console.WriteLine("Compress Done.");
         }
     }
 }

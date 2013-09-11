@@ -1,22 +1,23 @@
 ﻿using System.Text;
+using WebBuilder.Utils;
 using Yahoo.Yui.Compressor;
 using yui = Yahoo.Yui.Compressor;
 
-namespace WebBuilder.Utils
+namespace WebBuilder.Compress
 {
     public class CssCompressor : CompressorBase
     {
         private const string CompressedComment = "/*csd*/";
         private yui.CssCompressor InnerCompressor { get; set; }
         private Encoding Encoding { get; set; }
-        public CssCompressor(Parameter parameter)
-            : base(parameter)
+        public CssCompressor(CmdParameter cmdParameter)
+            : base(cmdParameter)
         {
             this.InnerCompressor = new yui.CssCompressor();
             this.InnerCompressor.CompressionType = CompressionType.Standard;
-            this.InnerCompressor.LineBreakPosition = parameter.lineBreak < 1 ? int.MaxValue : parameter.lineBreak;
-            this.InnerCompressor.RemoveComments = parameter.removeComments;
-            this.Encoding = Encoding.GetEncoding(string.IsNullOrEmpty(parameter.encoding) ? "UTF-8" : parameter.encoding);
+            this.InnerCompressor.LineBreakPosition = cmdParameter.lineBreak < 1 ? int.MaxValue : cmdParameter.lineBreak;
+            this.InnerCompressor.RemoveComments = cmdParameter.removeComments;
+            this.Encoding = Encoding.GetEncoding(string.IsNullOrEmpty(cmdParameter.encoding) ? "UTF-8" : cmdParameter.encoding);
         }
         public override byte[] Compress(byte[] source)
         {
@@ -28,7 +29,7 @@ namespace WebBuilder.Utils
             }
             else
             {
-                var dstText = string.Format("{0}{1}", this.Parameter.addMark ? CompressedComment : "", this.InnerCompressor.Compress(srcText));
+                var dstText = string.Format("{0}{1}", this.CmdParameter.addMark ? CompressedComment : "", this.InnerCompressor.Compress(srcText));
                 return base.Compress(this.Encoding.GetBytes(dstText));
             }
         }

@@ -1,6 +1,8 @@
 using System;
 using System.Reflection;
 using System.Text;
+using WebBuilder.Compress;
+using WebBuilder.Doc;
 using WebBuilder.Utils;
 
 
@@ -40,9 +42,18 @@ namespace WebBuilder
             args = args.Replace("\\", "\\\\");
             try
             {
-                Parameter parameter = Parameter.Create(args);
-                Builder compressor = new Builder(parameter);
-                compressor.Excute();
+                CmdParameter cmdParameter = CmdParameter.Create(args);
+                if (string.IsNullOrEmpty(cmdParameter.inDir)) return;
+                if (!string.IsNullOrEmpty(cmdParameter.docDir))
+                {
+                    DocBuilder docBuilder = new DocBuilder(cmdParameter);
+                    docBuilder.Excute();
+                }
+                if (!string.IsNullOrEmpty(cmdParameter.outDir))
+                {
+                    CompressBuilder compressor = new CompressBuilder(cmdParameter);
+                    compressor.Excute();
+                }
             }
             catch (Exception ex)
             {

@@ -1,12 +1,14 @@
-using System;
 using System.Web.Script.Serialization;
 
 namespace WebBuilder.Utils
 {
-    public class Parameter
+    public class CmdParameter
     {
-        public Parameter()
+        private static JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+        public static CmdParameter Create(string parameter)
         {
+            return serializer.Deserialize<CmdParameter>(parameter);
         }
 
         public string platform { get; set; }
@@ -29,12 +31,7 @@ namespace WebBuilder.Utils
 
         public bool addMark { get; set; }
 
-        private static JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-        public static Parameter Create(string parameter)
-        {
-            return serializer.Deserialize<Parameter>(parameter);
-        }
+        public string docDir { get; set; }
     }
 }
 

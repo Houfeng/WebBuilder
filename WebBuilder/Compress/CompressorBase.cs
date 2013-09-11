@@ -1,14 +1,15 @@
 ﻿using System.IO;
 using System.IO.Compression;
+using WebBuilder.Utils;
 
-namespace WebBuilder.Utils
+namespace WebBuilder.Compress
 {
     public abstract class CompressorBase
     {
-        public Parameter Parameter { get; set; }
-        public CompressorBase(Parameter parameter)
+        public CmdParameter CmdParameter { get; set; }
+        public CompressorBase(CmdParameter cmdParameter)
         {
-            this.Parameter = parameter;
+            this.CmdParameter = cmdParameter;
         }
         private byte[] ToGzip(byte[] source)
         {

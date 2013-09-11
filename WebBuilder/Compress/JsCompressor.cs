@@ -1,25 +1,26 @@
 ﻿using System.Text;
+using WebBuilder.Utils;
 using Yahoo.Yui.Compressor;
 
-namespace WebBuilder.Utils
+namespace WebBuilder.Compress
 {
     public class JsCompressor : CompressorBase
     {
         private const string CompressedComment = "/*csd*/";
         private JavaScriptCompressor InnerCompressor { get; set; }
         private Encoding Encoding { get; set; }
-        public JsCompressor(Parameter parameter)
-            : base(parameter)
+        public JsCompressor(CmdParameter cmdParameter)
+            : base(cmdParameter)
         {
             this.InnerCompressor = new JavaScriptCompressor();
             this.InnerCompressor.CompressionType = CompressionType.Standard;
-            this.InnerCompressor.DisableOptimizations = parameter.optimize;
-            this.InnerCompressor.ObfuscateJavascript = parameter.obfuscate;
-            this.Encoding = Encoding.GetEncoding(string.IsNullOrEmpty(parameter.encoding) ? "UTF-8" : parameter.encoding);
+            this.InnerCompressor.DisableOptimizations = cmdParameter.optimize;
+            this.InnerCompressor.ObfuscateJavascript = cmdParameter.obfuscate;
+            this.Encoding = Encoding.GetEncoding(string.IsNullOrEmpty(cmdParameter.encoding) ? "UTF-8" : cmdParameter.encoding);
             this.InnerCompressor.Encoding = this.Encoding;
-            this.InnerCompressor.LineBreakPosition = parameter.lineBreak < 1 ? int.MaxValue : parameter.lineBreak;
+            this.InnerCompressor.LineBreakPosition = cmdParameter.lineBreak < 1 ? int.MaxValue : cmdParameter.lineBreak;
             this.InnerCompressor.PreserveAllSemicolons = true;
-            this.InnerCompressor.IgnoreEval = parameter.ignoreEval;
+            this.InnerCompressor.IgnoreEval = cmdParameter.ignoreEval;
         }
         public override byte[] Compress(byte[] source)
         {
@@ -31,7 +32,7 @@ namespace WebBuilder.Utils
             }
             else
             {
-                var dstText = string.Format("{0}{1}", this.Parameter.addMark ? CompressedComment : "", this.InnerCompressor.Compress(srcText));
+                var dstText = string.Format("{0}{1}", this.CmdParameter.addMark ? CompressedComment : "", this.InnerCompressor.Compress(srcText));
                 return base.Compress(this.Encoding.GetBytes(dstText));
             }
         }
