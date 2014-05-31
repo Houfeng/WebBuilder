@@ -14,10 +14,31 @@ namespace WebBuilder.Compress
         {
             this.cmdParameter = cmdParameter;
             this.Separator = this.cmdParameter.platform == "windows" ? "\\" : "/";
+            this.cmdParameter.inDir = this.cmdParameter.inDir.Replace("\\", this.Separator).Replace("/", this.Separator);
+            this.cmdParameter.outDir = this.cmdParameter.outDir.Replace("\\", this.Separator).Replace("/", this.Separator);
             this.Compressors = new Dictionary<string, CompressorBase>();
             this.Compressors.Add(".*", new GeneralCompressor(this.cmdParameter));
             this.Compressors.Add(".js", new JsCompressor(this.cmdParameter));
             this.Compressors.Add(".css", new CssCompressor(this.cmdParameter));
+        }
+        private bool canHandle(string filePath)
+        {
+            if (this.cmdParameter.ignoreList == null)
+            {
+                return true;
+            }
+            foreach (var _path in this.cmdParameter.ignoreList)
+            {
+                var path = string.Format("{0}{1}{2}", this.cmdParameter.inDir, this.Separator, _path);
+                path = path.Replace("\\", this.Separator).Replace("/", this.Separator);
+                filePath = filePath.Replace("\\", this.Separator).Replace("/", this.Separator);
+                path = path.Replace(this.Separator + this.Separator, this.Separator);
+                if (filePath.ToLower().StartsWith(path.ToLower()))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         private void Handle(DirectoryInfo inDir, DirectoryInfo outDir)
         {
@@ -55,7 +76,11 @@ namespace WebBuilder.Compress
                     {
                         compressor = this.Compressors[exName];
                     }
-                    byte[] content = compressor.Compress(File.ReadAllBytes(childInFile.FullName));
+                    byte[] content = File.ReadAllBytes(childInFile.FullName);
+                    if (this.canHandle(childInFile.FullName))
+                    {
+                        content = compressor.Compress(content);
+                    }
                     File.WriteAllBytes(string.Format("{0}{1}{2}", outDir.FullName, this.Separator, childInFile.Name), content);
                     Console.WriteLine(string.Format("file:\"{0}\".", childInFile.FullName));
 #if !DEBUG

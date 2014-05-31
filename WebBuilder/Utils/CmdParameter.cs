@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Web.Script.Serialization;
 
 namespace WebBuilder.Utils
@@ -9,6 +10,18 @@ namespace WebBuilder.Utils
         public static CmdParameter Create(string parameter)
         {
             return serializer.Deserialize<CmdParameter>(parameter);
+        }
+
+        public CmdParameter()
+        {
+            //处理默认值
+            //'optimize':true,'obfuscate':true,'removeComments':true,'addMark':true
+            this.ignoreList = new List<string>();
+            this.optimize = true;
+            this.obfuscate = true;
+            this.removeComments=true;
+            this.addMark=true;
+            this.platform = "windows";
         }
 
         public string platform { get; set; }
@@ -26,6 +39,8 @@ namespace WebBuilder.Utils
         public int lineBreak { get; set; }
 
         public bool ignoreEval { get; set; }
+
+        public List<string> ignoreList { get; set; }
 
         public bool removeComments { get; set; }
 
