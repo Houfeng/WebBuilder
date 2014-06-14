@@ -5,3 +5,4 @@
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Release\Yahoo.Yui.Compressor.dll
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\obj\x86\Release\WebBuilder.exe
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\obj\x86\Release\WebBuilder.pdb
+\\psf\Home\Desktop\dev\MyProjects\WebBuilder\WebBuilder\bin\Release\dotless.Core.dll

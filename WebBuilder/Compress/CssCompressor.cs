@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using dotless.Core;
+using System.Text;
 using WebBuilder.Utils;
 using Yahoo.Yui.Compressor;
 using yui = Yahoo.Yui.Compressor;
@@ -29,6 +30,7 @@ namespace WebBuilder.Compress
             }
             else
             {
+                srcText = Less.Parse(srcText);
                 var dstText = string.Format("{0}{1}", this.CmdParameter.addMark ? CompressedComment : "", this.InnerCompressor.Compress(srcText));
                 return base.Compress(this.Encoding.GetBytes(dstText));
             }

@@ -38,6 +38,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dotless.Core, Version=1.3.1.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\dotless.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EcmaScript.NET, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\EcmaScript.NET.dll</HintPath>
@@ -70,6 +74,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Lib\dotless.Core.dll" />
     <Content Include="Lib\EcmaScript.NET.dll" />
     <Content Include="Lib\JinianNet.JNTemplate.dll" />
     <Content Include="Lib\Yahoo.Yui.Compressor.dll" />

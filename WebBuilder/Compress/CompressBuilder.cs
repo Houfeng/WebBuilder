@@ -20,6 +20,7 @@ namespace WebBuilder.Compress
             this.Compressors.Add(".*", new GeneralCompressor(this.cmdParameter));
             this.Compressors.Add(".js", new JsCompressor(this.cmdParameter));
             this.Compressors.Add(".css", new CssCompressor(this.cmdParameter));
+            this.Compressors.Add(".less", new CssCompressor(this.cmdParameter));
         }
         private bool canHandle(string filePath)
         {

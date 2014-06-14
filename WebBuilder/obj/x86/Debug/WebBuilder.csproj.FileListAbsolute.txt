@@ -5,3 +5,4 @@
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\obj\x86\Debug\WebBuilder.pdb
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\bin\Debug\EcmaScript.NET.dll
 \\psf\Home\Desktop\Dev\MyProjects\WebBuilder\WebBuilder\obj\x86\Debug\WebBuilder.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\dev\MyProjects\WebBuilder\WebBuilder\bin\Debug\WebBuilder.exe.config
